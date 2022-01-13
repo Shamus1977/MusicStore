@@ -9,6 +9,6 @@ namespace MusicStoreWeb.Data
             : base(options)
         {
         }
-        DbSet<Category>? Categories { get; set; } 
+        public DbSet<Category>? Categories { get; set; } 
     }
 }
