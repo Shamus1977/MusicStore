@@ -17,5 +17,21 @@ namespace MusicStoreWeb.Controllers
             IEnumerable<Category>? categoryList = _dbContext?.Categories;
             return View(categoryList);
         }
+
+        //Get
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        //Post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category category)
+        {
+            _dbContext?.Categories?.Add(category);
+            _dbContext?.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
