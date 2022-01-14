@@ -29,9 +29,18 @@ namespace MusicStoreWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category category)
         {
-            _dbContext?.Categories?.Add(category);
-            _dbContext?.SaveChanges();
-            return RedirectToAction("Index");
+            if(category.Name == category.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("Name", 
+                    "The Display Order Cannot Exactly Match The Name");
+            }
+            if (ModelState.IsValid)
+            {
+                _dbContext?.Categories?.Add(category);
+                _dbContext?.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(category);
         }
     }
 }
