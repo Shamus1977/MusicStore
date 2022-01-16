@@ -3,6 +3,13 @@
     ViewData["Title"] = "Index";
 }
 
+@if(TempData["success"] != null)
+{
+    <ul>
+        <li><h5>@TempData["success"]</h5></li>
+    </ul>
+}
+
 <div style="width:100%;display:flex; justify-content:center">
     <div style="width:100%; margin:3% 5%; max-width:600px" method="post">
         <div style="width:100%;">
@@ -19,6 +26,8 @@
                             <th scope="col">Name</th>
                             <th scope="col">Display Order</th>
                             <th scope="col">Created On</th>
+                            <th scope="col" ></th>
+                            <th scope="col" ></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,6 +37,22 @@
                             <td scope="row">@item.Name</td>
                             <td>@item.DisplayOrder</td>
                             <td>@item.CreatedDateTime</td>
+                            <td>
+                                <a asp-controller="Category" asp-action="Edit" 
+                                    asp-route-id="@item.Id"
+                                    style="align-self:flex-start;" 
+                                    class="btn btn-primary">
+                                    Edit
+                                </a>
+                            </td>
+                            <td>
+                                <a asp-controller="Category" asp-action="Delete" 
+                                    asp-route-id="@item.Id"
+                                    style="align-self:flex-start;" 
+                                    class="btn btn-primary">
+                                    Delete
+                                </a>
+                            </td>
                         </tr>
                         }
                     </tbody>
