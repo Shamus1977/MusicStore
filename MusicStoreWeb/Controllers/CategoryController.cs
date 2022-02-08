@@ -7,15 +7,17 @@ namespace MusicStoreWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository _dbContext;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICategoryRepository _repo;
 
-        public CategoryController(ICategoryRepository context)
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _dbContext = context;
+            _unitOfWork = unitOfWork;
+            _repo = _unitOfWork.CategoryRepository;
         }
         public IActionResult Index()
         {
-            IEnumerable<Category>? categoryList = _dbContext.GetAll();
+            IEnumerable<Category>? categoryList = _repo.GetAll();
             return View(categoryList);
         }
 
@@ -38,8 +40,8 @@ namespace MusicStoreWeb.Controllers
             }
             if (ModelState.IsValid)
             {
-                _dbContext?.Add(category);
-                _dbContext?.Save();
+                _repo?.Add(category);
+                _unitOfWork.Save();
                 TempData["success"] = "Category Created Successfully";
                 return RedirectToAction("Index");
             }
@@ -54,7 +56,7 @@ namespace MusicStoreWeb.Controllers
             {
                 return NotFound();
             }
-            var foundCategory = _dbContext?.GetFirstOrDefault(c=>c.Id==id);
+            var foundCategory = _repo?.GetFirstOrDefault(c=>c.Id==id);
             if (foundCategory == null)
             {
                 return NotFound();
@@ -74,8 +76,8 @@ namespace MusicStoreWeb.Controllers
             }
             if (ModelState.IsValid)
             {
-                _dbContext?.Update(category);
-                _dbContext?.Save();
+                _repo?.Update(category);
+                _unitOfWork?.Save();
                 TempData["success"] = "Category Updated Successfully";
                 return RedirectToAction("Index");
             }
@@ -91,7 +93,7 @@ namespace MusicStoreWeb.Controllers
             {
                 return NotFound();
             }
-            var foundCategory = _dbContext?.GetFirstOrDefault(c=>c.Id==id);
+            var foundCategory = _repo?.GetFirstOrDefault(c=>c.Id==id);
             if (foundCategory == null)
             {
                 return NotFound();
@@ -104,9 +106,9 @@ namespace MusicStoreWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
-            var foundCategory = _dbContext?.GetFirstOrDefault(c => c.Id == id);
-            _dbContext?.Remove(foundCategory);
-            _dbContext?.Save();
+            var foundCategory = _repo?.GetFirstOrDefault(c => c.Id == id);
+            _repo?.Remove(foundCategory);
+            _unitOfWork?.Save();
             TempData["success"] = "Category Deleted Successfully";
             return RedirectToAction("Index");
         }

@@ -12,11 +12,6 @@ namespace MusicStoreWeb.Repository
         {
             _dbContext = context;
         }
-        public void Save()
-        {
-            _dbContext?.SaveChanges();
-        }
-
         public void Update(Category category)
         {
             _dbContext?.Update(category);
