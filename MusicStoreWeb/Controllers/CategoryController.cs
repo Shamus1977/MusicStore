@@ -106,7 +106,7 @@ namespace MusicStoreWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
-            var foundCategory = _repo?.GetFirstOrDefault(c => c.Id == id);
+            var foundCategory = _repo?.GetFirstOrDefault(c => c.Id == id)!;
             _repo?.Remove(foundCategory);
             _unitOfWork?.Save();
             TempData["success"] = "Category Deleted Successfully";
