@@ -4,7 +4,7 @@
 }
 
 <div style="width:100%;display:flex; justify-content:center">
-    <div style="width:100%; margin:3% 5%; max-width:600px" method="post">
+    <div style="width:100%; margin:3% 5%; max-width:350px" method="post">
         <div style="width:100%;">
             <h1>Cover Types</h1>
             <a asp-controller="CoverType" asp-action="Create" 
@@ -18,7 +18,6 @@
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col" ></th>
-                            <th scope="col" ></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,15 +28,13 @@
                             <td>
                                 <a asp-controller="CoverType" asp-action="Edit" 
                                     asp-route-id="@item.Id"
-                                    style="align-self:flex-start;" 
+                                     
                                     class="btn btn-primary">
                                     Edit
                                 </a>
-                            </td>
-                            <td>
                                 <a asp-controller="CoverType" asp-action="Delete" 
                                     asp-route-id="@item.Id"
-                                    style="align-self:flex-start;" 
+                                    
                                     class="btn btn-danger">
                                     Delete
                                 </a>
