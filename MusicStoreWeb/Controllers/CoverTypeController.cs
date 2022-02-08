@@ -46,5 +46,36 @@ namespace MusicStoreWeb.Controllers
             return View(coverType);
         }
 
+        //////////////////////////////////////////    Edit Section ////////////////////////////
+        
+        // GET
+        public IActionResult Edit( int? id)
+        {
+            if(id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var foundCoverType = _repo?.GetFirstOrDefault(c => c.Id == id);
+            if (foundCoverType == null)
+            {
+                return NotFound();
+            }
+            return View(foundCoverType);
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(CoverType coverType)
+        {
+            if (ModelState.IsValid)
+            {
+                _repo?.Update(coverType);
+                _unitOfWork?.Save();
+                TempData["success"] = "Cover Type Updated Successfully";
+                return RedirectToAction("Index");
+            }
+            return View(coverType);
+        }
     }
 }

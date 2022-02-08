@@ -1,0 +1,33 @@
+﻿@model CoverType
+
+@{
+    ViewData["Title"] = "Edit Cover Type";
+}
+
+<div style="width:100%;display:flex; justify-content:center">
+    <form style="width:100%; margin:3% 5%; max-width:500px" method="post">
+        <div class="border p-3 mt-4 rounded-2">
+            <div class="row pb-2" >
+                <h2 class="text-primary">Edit Cover Type</h2>
+                <hr/>
+            </div>
+            <div asp-validation-summary="All" class="text-danger" ></div>
+            <div class="form-group mb-2">
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Name"></label>
+                <input style="width:100%" asp-for="Name" />
+                <span asp-validation-for="Name" class="text-danger" ></span>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:150px; margin-right:5px">Update</button>
+            <a asp-controller="CoverType" asp-action="Index" 
+                class="btn btn-danger" style="width:150px" >
+                Cancel
+            </a>
+        </div>
+    </form>
+    @section Scripts {
+        @{
+            <partial name="_ValidationScriptsPartial" />
+        }
+    }
+</div>
+
