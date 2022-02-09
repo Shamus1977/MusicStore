@@ -4,6 +4,7 @@ using MusicStoreWeb.Repository.IRepository;
 
 namespace MusicStoreWeb.Controllers
 {
+    [Area("Admin")]
     public class CoverTypeController : Controller
     {
         private readonly IUnitOfWork? _unitOfWork;

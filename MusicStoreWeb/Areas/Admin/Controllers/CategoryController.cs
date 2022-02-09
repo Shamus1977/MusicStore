@@ -5,6 +5,7 @@ using MusicStoreWeb.Repository.IRepository;
 
 namespace MusicStoreWeb.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
