@@ -23,22 +23,13 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a  class="nav-link" style="font-size:25px" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="font-size:25px" asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="font-size:25px" asp-area="Admin" asp-controller="CoverType" asp-action="Index">Cover Types</a>
+                        <a  class="nav-link" style="font-size:25px" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" style="font-size:25px" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <a class="nav-link dropdown-toggle" style="font-size:25px" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Content Management</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
+                            <a class="dropdown-item" style="font-size:25px" asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
+                            <a class="dropdown-item" style="font-size:25px" asp-area="Admin" asp-controller="CoverType" asp-action="Index">Cover Types</a>
                         </div>
                     </li>
                 </ul>
