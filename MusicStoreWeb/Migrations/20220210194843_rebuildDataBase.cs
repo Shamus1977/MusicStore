@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MusicStoreWeb.Migrations
 {
-    public partial class NewStart : Migration
+    public partial class rebuildDataBase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -81,7 +81,7 @@ namespace MusicStoreWeb.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MediaType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BandId1 = table.Column<int>(type: "int", nullable: true),
+                    BandId = table.Column<int>(type: "int", nullable: true),
                     Label = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Length = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NumberOfTracks = table.Column<int>(type: "int", nullable: false),
@@ -99,8 +99,8 @@ namespace MusicStoreWeb.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Bands_BandId1",
-                        column: x => x.BandId1,
+                        name: "FK_Products_Bands_BandId",
+                        column: x => x.BandId,
                         principalTable: "Bands",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -109,16 +109,16 @@ namespace MusicStoreWeb.Migrations
                         principalTable: "Categories",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Products_Categories_CoverTypeId",
+                        name: "FK_Products_CoverTypes_CoverTypeId",
                         column: x => x.CoverTypeId,
                         principalTable: "CoverTypes",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_BandId1",
+                name: "IX_Products_BandId",
                 table: "Products",
-                column: "BandId1");
+                column: "BandId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",

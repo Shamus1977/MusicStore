@@ -141,7 +141,7 @@ namespace MusicStoreWeb.Migrations
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("BandId1")
+                    b.Property<int?>("BandId")
                         .HasColumnType("int");
 
                     b.Property<int?>("CategoryId")
@@ -193,7 +193,7 @@ namespace MusicStoreWeb.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BandId1");
+                    b.HasIndex("BandId");
 
                     b.HasIndex("CategoryId");
 
@@ -206,7 +206,7 @@ namespace MusicStoreWeb.Migrations
                 {
                     b.HasOne("MusicStoreWeb.Models.Band", "Band")
                         .WithMany()
-                        .HasForeignKey("BandId1");
+                        .HasForeignKey("BandId");
 
                     b.HasOne("MusicStoreWeb.Models.Category", "Category")
                         .WithMany()

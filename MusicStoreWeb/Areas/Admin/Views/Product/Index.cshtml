@@ -1,0 +1,28 @@
+﻿
+
+<div style="width:100%;display:flex; justify-content:center">
+    <div style="width:100%; margin:3% 5%; max-width:350px" method="post">
+        <div style="width:100%;">
+            <h1>Product List</h1>
+            <a asp-controller="Product" asp-action="Create" 
+                style="align-self:flex-start;" 
+                class="btn btn-primary">
+                <i class="bi bi-plus-lg"></i>&nbsp; Create Product
+            </a>
+            <div style="width:100%; margin-top:10px">
+                <table style="width:100%" class="table table-secondary table-striped border">
+                    <thead >
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Band</th>
+                            <th scope="col">Media Type</th>
+                            <th scope="col">Price</th>
+                            <th scope="col" ></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

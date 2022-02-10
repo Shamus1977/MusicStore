@@ -12,8 +12,8 @@ using MusicStoreWeb.Data;
 namespace MusicStoreWeb.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220210004026_NewStart")]
-    partial class NewStart
+    [Migration("20220210194843_rebuildDataBase")]
+    partial class rebuildDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -143,7 +143,7 @@ namespace MusicStoreWeb.Migrations
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("BandId1")
+                    b.Property<int?>("BandId")
                         .HasColumnType("int");
 
                     b.Property<int?>("CategoryId")
@@ -195,7 +195,7 @@ namespace MusicStoreWeb.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BandId1");
+                    b.HasIndex("BandId");
 
                     b.HasIndex("CategoryId");
 
@@ -208,7 +208,7 @@ namespace MusicStoreWeb.Migrations
                 {
                     b.HasOne("MusicStoreWeb.Models.Band", "Band")
                         .WithMany()
-                        .HasForeignKey("BandId1");
+                        .HasForeignKey("BandId");
 
                     b.HasOne("MusicStoreWeb.Models.Category", "Category")
                         .WithMany()
