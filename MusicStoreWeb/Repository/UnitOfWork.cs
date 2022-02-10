@@ -8,11 +8,13 @@ namespace MusicStoreWeb.Repository
         private AppDbContext? _dbContext;
         public ICategoryRepository CategoryRepository { get; private set; }
         public ICoverTypeRepository CoverTypeRepository { get; private set;}
+        public IProductRepository ProductRepository { get; private set; }
         public UnitOfWork(AppDbContext context)
         {
             _dbContext = context;
             this.CategoryRepository = new CategoryRepository(context);
             this.CoverTypeRepository = new CoverTypeRepository(context);
+            this.ProductRepository = new ProductRepository(context);
         }
         public void Save()
         {
