@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicStoreWeb.Models;
 using MusicStoreWeb.Repository.IRepository;
 
@@ -24,48 +25,46 @@ namespace MusicStoreWeb.Areas.Admin.Controllers
             return View();
         }
 
-        /// *************************    Create Section       ********************
+
+        /// *************************    Edit Section       ********************
         //Get
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
+            Product product = new();
+            IEnumerable<SelectListItem> categoryList = _unitOfWork!.CategoryRepository.GetAll().Select(
+                    i => new SelectListItem
+                    {
+                        Text = i.Name,
+                        Value = i.Id.ToString()
+                    }
+                );
+
+            IEnumerable<SelectListItem> coverTypeList = _unitOfWork.CoverTypeRepository.GetAll().Select(
+                    i => new SelectListItem
+                    {
+                        Text = i.Name,
+                        Value = i.Id.ToString()
+                    }
+                );
+
+            if(id == null || id == 0)
+            {
+                // Crate new product.
+                ViewBag.CategoryList = categoryList;
+                ViewBag.CoverTypeList = coverTypeList;
+                return View(product);
+            }
+            else
+            {
+                //Update product.
+            }
             return View();
         }
 
         //Post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                _repo?.Add(product);
-                _unitOfWork?.Save();
-                TempData["success"] = "Product Created";
-                return RedirectToAction("Index");
-            }
-            return View(product);
-        }
-
-        /// *************************    Edit Section       ********************
-        //Get
-        public IActionResult Edit(int? id)
-        {
-            if(id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var foundProduct = _repo?.GetFirstOrDefault(p => p.Id == id);
-            if (foundProduct == null)
-            {
-                return NotFound();
-            }
-            return View(foundProduct);
-        }
-
-        //Post
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(Product product)
+        public IActionResult Upsert(Product product)
         {
             if (ModelState.IsValid)
             {

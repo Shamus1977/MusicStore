@@ -1,0 +1,95 @@
+﻿@model Product;
+@{
+    ViewData["Title"] = "Upsert Product";
+}
+
+<div style="width:100%;display:flex; justify-content:center">
+    <form style="width:100%; margin:3% 5%; max-width:500px" asp-action="Upsert" method="post">
+        <div class="border p-3 mt-4 rounded-2">
+            <div class="row pb-2" >
+                <h2 class="text-primary">Upsert Product</h2>
+                <hr/>
+            </div>
+            @*<div asp-validation-summary="All" class="text-danger" ></div>*@
+            <div class="form-group mb-2">
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Title"></label>
+                <input style="width:100%" asp-for="Title" />
+                <span asp-validation-for="Title" class="text-danger" ></span>
+            </div>
+            @*<div class="form-group mb-2">
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="BandId"></label>
+                <input style="width:100%" asp-for="BandId" />
+                <span asp-validation-for="BandId" class="text-danger" ></span>
+            </div>*@
+            <div class="form-group mb-2">
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Label"></label>
+                <input style="width:100%" asp-for="Label" />
+                <span asp-validation-for="Label" class="text-danger" ></span>
+            </div>
+            <div class="form-group mb-2">
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Length"></label>
+                <input style="width:100%" asp-for="Length" />
+                <span asp-validation-for="Length" class="text-danger" ></span>
+            </div>
+            <div class="form-group mb-2">
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="NumberOfTracks"></label>
+                <input style="width:100%" asp-for="NumberOfTracks" />
+                <span asp-validation-for="NumberOfTracks" class="text-danger" ></span>
+            </div>
+            <div class="form-group mb-2">
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Description"></label>
+                <textarea style="width:100%" rows="3" asp-for="Description" ></textarea>
+                <span asp-validation-for="Description" class="text-danger" ></span>
+            </div>
+            <div class="form-group mb-2">
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Price"></label>
+                <input style="width:100%" asp-for="Price" />
+                <span asp-validation-for="Price" class="text-danger" ></span>
+            </div>
+            <div class="form-group mb-2">
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Released"></label>
+                <input style="width:100%" asp-for="Released" />
+                <span asp-validation-for="Released" class="text-danger" ></span>
+            </div>
+            <div class="form-group mb-2">
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Tracks"></label>
+                <textarea style="width:100%" rows="10" asp-for="Tracks" ></textarea>
+                <span asp-validation-for="Tracks" class="text-danger" ></span>
+            </div>
+            <div class="form-group mb-2">
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Members"></label>
+                <textarea style="width:100%" rows="10" asp-for="Members" ></textarea>
+                <span asp-validation-for="Members" class="text-danger" ></span>
+            </div>
+            <div class="form-group mb-2">
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="ImageUrl"></label>
+                <input style="width:100%" asp-for="ImageUrl" />
+                <span asp-validation-for="ImageUrl" class="text-danger" ></span>
+            </div>
+            <div class="form-group mb-2">
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="CategoryId"></label>
+                <select class="form-select" style="width:100%" asp-for="CategoryId" asp-items="ViewBag.CategoryList" > 
+                    <option disabled selected >--- Select Category ---</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger" ></span>
+            </div>
+                        <div class="form-group mb-2">
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="CoverTypeId"></label>
+                <select class="form-select" style="width:100%" asp-for="CoverTypeId" asp-items="ViewBag.CoverTypeList" > 
+                    <option disabled selected >--- Select Cover Type ---</option>
+                </select>
+                <span asp-validation-for="CoverTypeId" class="text-danger" ></span>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:150px; margin-right:5px">Update</button>
+            <a asp-controller="CoverType" asp-action="Index" 
+                class="btn btn-danger" style="width:150px" >
+                Cancel
+            </a>
+        </div>
+    </form>
+    @section Scripts {
+        @{
+            <partial name="_ValidationScriptsPartial" />
+        }
+    }
+</div>
