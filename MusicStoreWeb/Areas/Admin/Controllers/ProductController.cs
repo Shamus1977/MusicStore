@@ -50,7 +50,8 @@ namespace MusicStoreWeb.Areas.Admin.Controllers
             if(id == null || id == 0)
             {
                 // Crate new product.
-                ViewBag.CategoryList = categoryList;
+                //ViewBag.CategoryList = categoryList;
+                ViewData["categoryList"] = categoryList;
                 ViewBag.CoverTypeList = coverTypeList;
                 return View(product);
             }
