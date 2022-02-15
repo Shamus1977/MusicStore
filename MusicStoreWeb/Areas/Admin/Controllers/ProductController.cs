@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicStoreWeb.Models;
+using MusicStoreWeb.Models.ViewModels;
 using MusicStoreWeb.Repository.IRepository;
 
 namespace MusicStoreWeb.Areas.Admin.Controllers
@@ -30,29 +31,28 @@ namespace MusicStoreWeb.Areas.Admin.Controllers
         //Get
         public IActionResult Upsert(int? id)
         {
-            Product product = new();
-            IEnumerable<SelectListItem> categoryList = _unitOfWork!.CategoryRepository.GetAll().Select(
-                    i => new SelectListItem
-                    {
-                        Text = i.Name,
-                        Value = i.Id.ToString()
-                    }
-                );
-
-            IEnumerable<SelectListItem> coverTypeList = _unitOfWork.CoverTypeRepository.GetAll().Select(
-                    i => new SelectListItem
-                    {
-                        Text = i.Name,
-                        Value = i.Id.ToString()
-                    }
-                );
+            ProductViewModel product = new()
+            {
+                Product = new(),
+                CategoryList = _unitOfWork?.CategoryRepository.GetAll().Select(
+                        i => new SelectListItem
+                        {
+                            Text = i.Name,
+                            Value = i.Id.ToString()
+                        }
+                    ),
+                CoverTypeList = _unitOfWork?.CoverTypeRepository.GetAll().Select(
+                        i => new SelectListItem
+                        {
+                            Text = i.Name,
+                            Value = i.Id.ToString()
+                        }
+                    ),
+            };
 
             if(id == null || id == 0)
             {
                 // Crate new product.
-                //ViewBag.CategoryList = categoryList;
-                ViewData["categoryList"] = categoryList;
-                ViewBag.CoverTypeList = coverTypeList;
                 return View(product);
             }
             else

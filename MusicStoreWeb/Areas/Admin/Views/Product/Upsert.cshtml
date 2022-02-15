@@ -1,4 +1,4 @@
-﻿@model Product;
+﻿@model MusicStoreWeb.Models.ViewModels.ProductViewModel;
 @{
     ViewData["Title"] = "Upsert Product";
 }
@@ -12,9 +12,9 @@
             </div>
             @*<div asp-validation-summary="All" class="text-danger" ></div>*@
             <div class="form-group mb-2">
-                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Title"></label>
-                <input style="width:100%" asp-for="Title" />
-                <span asp-validation-for="Title" class="text-danger" ></span>
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.Title"></label>
+                <input style="width:100%" asp-for="Product!.Title" />
+                <span asp-validation-for="Product!.Title" class="text-danger" ></span>
             </div>
             @*<div class="form-group mb-2">
                 <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="BandId"></label>
@@ -22,67 +22,67 @@
                 <span asp-validation-for="BandId" class="text-danger" ></span>
             </div>*@
             <div class="form-group mb-2">
-                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Label"></label>
-                <input style="width:100%" asp-for="Label" />
-                <span asp-validation-for="Label" class="text-danger" ></span>
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.Label"></label>
+                <input style="width:100%" asp-for="Product!.Label" />
+                <span asp-validation-for="Product!.Label" class="text-danger" ></span>
             </div>
             <div class="form-group mb-2">
-                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Length"></label>
-                <input style="width:100%" asp-for="Length" />
-                <span asp-validation-for="Length" class="text-danger" ></span>
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.Length"></label>
+                <input style="width:100%" asp-for="Product!.Length" />
+                <span asp-validation-for="Product!.Length" class="text-danger" ></span>
             </div>
             <div class="form-group mb-2">
-                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="NumberOfTracks"></label>
-                <input style="width:100%" asp-for="NumberOfTracks" />
-                <span asp-validation-for="NumberOfTracks" class="text-danger" ></span>
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.NumberOfTracks"></label>
+                <input style="width:100%" asp-for="Product!.NumberOfTracks" />
+                <span asp-validation-for="Product!.NumberOfTracks" class="text-danger" ></span>
             </div>
             <div class="form-group mb-2">
-                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Description"></label>
-                <textarea style="width:100%" rows="3" asp-for="Description" ></textarea>
-                <span asp-validation-for="Description" class="text-danger" ></span>
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.Description"></label>
+                <textarea style="width:100%" rows="3" asp-for="Product!.Description" ></textarea>
+                <span asp-validation-for="Product!.Description" class="text-danger" ></span>
             </div>
             <div class="form-group mb-2">
-                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Price"></label>
-                <input style="width:100%" asp-for="Price" />
-                <span asp-validation-for="Price" class="text-danger" ></span>
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.Price"></label>
+                <input style="width:100%" asp-for="Product!.Price" />
+                <span asp-validation-for="Product!.Price" class="text-danger" ></span>
             </div>
             <div class="form-group mb-2">
-                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Released"></label>
-                <input style="width:100%" asp-for="Released" />
-                <span asp-validation-for="Released" class="text-danger" ></span>
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.Released"></label>
+                <input style="width:100%" asp-for="Product!.Released" />
+                <span asp-validation-for="Product!.Released" class="text-danger" ></span>
             </div>
             <div class="form-group mb-2">
-                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Tracks"></label>
-                <textarea style="width:100%" rows="10" asp-for="Tracks" ></textarea>
-                <span asp-validation-for="Tracks" class="text-danger" ></span>
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.Tracks"></label>
+                <textarea style="width:100%" rows="10" asp-for="Product!.Tracks" ></textarea>
+                <span asp-validation-for="Product!.Tracks" class="text-danger" ></span>
             </div>
             <div class="form-group mb-2">
-                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Members"></label>
-                <textarea style="width:100%" rows="10" asp-for="Members" ></textarea>
-                <span asp-validation-for="Members" class="text-danger" ></span>
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.Members"></label>
+                <textarea style="width:100%" rows="10" asp-for="Product!.Members" ></textarea>
+                <span asp-validation-for="Product!.Members" class="text-danger" ></span>
             </div>
             <div class="form-group mb-2">
-                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="ImageUrl"></label>
-                <input style="width:100%" asp-for="ImageUrl" />
-                <span asp-validation-for="ImageUrl" class="text-danger" ></span>
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.ImageUrl"></label>
+                <input style="width:100%" asp-for="Product!.ImageUrl" />
+                <span asp-validation-for="Product!.ImageUrl" class="text-danger" ></span>
             </div>
             <div class="form-group mb-2">
-                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="CategoryId"></label>
-                <select class="form-select" style="width:100%" asp-for="CategoryId" 
-                    asp-items="@ViewData["categoryList"] as IEnumerable<SelectListItem>" > 
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.CategoryId"></label>
+                <select class="form-select" style="width:100%" asp-for="Product!.CategoryId" 
+                    asp-items="@Model?.CategoryList" > 
                     <option disabled selected >--- Select Category ---</option>
                 </select>
-                <span asp-validation-for="CategoryId" class="text-danger" ></span>
+                <span asp-validation-for="Product!.CategoryId" class="text-danger" ></span>
             </div>
                         <div class="form-group mb-2">
-                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="CoverTypeId"></label>
-                <select class="form-select" style="width:100%" asp-for="CoverTypeId" asp-items="ViewBag.CoverTypeList" > 
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.CoverTypeId"></label>
+                <select class="form-select" style="width:100%" asp-for="Product!.CoverTypeId" asp-items="@Model?.CoverTypeList" > 
                     <option disabled selected >--- Select Cover Type ---</option>
                 </select>
-                <span asp-validation-for="CoverTypeId" class="text-danger" ></span>
+                <span asp-validation-for="Product!.CoverTypeId" class="text-danger" ></span>
             </div>
             <button type="submit" class="btn btn-primary" style="width:150px; margin-right:5px">Update</button>
-            <a asp-controller="CoverType" asp-action="Index" 
+            <a asp-controller="Product" asp-action="Index" 
                 class="btn btn-danger" style="width:150px" >
                 Cancel
             </a>
