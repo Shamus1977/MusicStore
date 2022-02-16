@@ -11,11 +11,13 @@ namespace MusicStoreWeb.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork? _unitOfWork;
         private readonly IProductRepository? _repo;
+        private readonly IWebHostEnvironment _environment;
 
-        public ProductController(IUnitOfWork unitOfWork)
+        public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment environment)
         {
             _unitOfWork = unitOfWork;
             _repo = _unitOfWork.ProductRepository;
+            _environment = environment;
         }
 
         /// /////////////////////////     Get All Section   ////////////////////////////////////
@@ -65,16 +67,29 @@ namespace MusicStoreWeb.Areas.Admin.Controllers
         //Post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(Product product)
+        public IActionResult Upsert(ProductViewModel obj, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
-                _repo?.Update(product);
+                string wwwRootPath = _environment.WebRootPath;
+                if(file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"Images\Products");
+                    var extension = Path.GetExtension(file.FileName);
+                    using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), 
+                        FileMode.Create))
+                        {
+                            file.CopyTo(fileStream);
+                        };
+                    obj.Product!.ImageUrl = @"Images\Products\" + fileName + extension;
+                }
+                _unitOfWork?.ProductRepository.Add(obj.Product!);
                 _unitOfWork?.Save();
-                TempData["success"] = "Product Updated Successfully";
+                TempData["success"] = "Product Created Successfully";
                 return RedirectToAction("Index");
             }
-            return View(product);
+            return View(obj);
         }
 
         // ****************************   Delete section   ******************
