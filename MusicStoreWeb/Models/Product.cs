@@ -35,8 +35,8 @@ namespace MusicStoreWeb.Models
         [Required]
         public string? Members { get; set; }
         [Required]
-        [ValidateNever]
         [Display(Name = "Image File")]
+        [ValidateNever]
         public string?  ImageUrl { get; set; }
         [Display(Name = "Date Added")]
         public DateTime AddedDate { get; set; } = DateTime.Now;

@@ -5,8 +5,10 @@
 
 <div style="width:100%;display:flex; justify-content:center">
     <form style="width:100%; margin:3% 5%; max-width:500px" enctype="multipart/form-data" asp-action="Upsert" method="post">
-        <div class="border p-3 mt-4 rounded-2">
-            <div class="row pb-2" >
+        <div class="row">
+            <div class="col-10">
+                <div class="border p-3 mt-4 rounded-2">
+            <div class=" col-12 row pb-2" >
                 <h2 class="text-primary">@(Model?.Product?.Id != 0?"Update":"Create") Product</h2>
                 <hr/>
             </div>
@@ -26,6 +28,8 @@
                 <input style="width:100%" asp-for="BandId" />
                 <span asp-validation-for="BandId" class="text-danger" ></span>
             </div>*@
+            <input hidden asp-for="Product.Id" />
+            <input hidden asp-for="Product.ImageUrl" />
             <div class="form-group mb-2">
                 <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.Label"></label>
                 <input style="width:100%" asp-for="Product!.Label" />
@@ -67,8 +71,8 @@
                 <span asp-validation-for="Product!.Members" class="text-danger" ></span>
             </div>
             <div class="form-group mb-2">
-                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.ImageUrl"></label>
-                <input type="file" id="uploadBox" name="file" class="bg-white form-control" style="width:100%" asp-for="Product!.ImageUrl" />
+                <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product.ImageUrl"></label>
+                <input type="file" id="uploadBox" name="file" class="bg-white form-control" style="width:100%" asp-for="Product.ImageUrl" />
             </div>
             <div class="form-group mb-2">
                 <label class="text-white" style="font-size:1.5rem;display:block;" asp-for="Product!.CategoryId"></label>
@@ -96,6 +100,13 @@
                 Cancel
             </a>
         </div>
+            </div>
+            <div class="col-2" style=" padding-top:30px">
+                <img src="@Model?.Product?.ImageUrl"
+                    style="border-radius:5px; border:1px solid white;">
+            </div>
+        </div>
+        
     </form>
     @section Scripts {
         @{

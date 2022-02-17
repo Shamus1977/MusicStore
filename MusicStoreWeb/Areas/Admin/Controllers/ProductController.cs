@@ -28,7 +28,7 @@ namespace MusicStoreWeb.Areas.Admin.Controllers
         }
 
 
-        /// *************************    Edit Section       ********************
+        /// *************************    Upsert Section       ********************
         //Get
         public IActionResult Upsert(int? id)
         {
@@ -58,11 +58,10 @@ namespace MusicStoreWeb.Areas.Admin.Controllers
             }
             else
             {
-                product.Product = _repo.GetFirstOrDefault(i => i.Id == id);
+                product.Product = _repo?.GetFirstOrDefault(i => i.Id == id);
                 //Update product.
                 return View(product);
             }
-            return View();
         }
 
         //Post
@@ -72,20 +71,36 @@ namespace MusicStoreWeb.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                string wwwRootPath = _environment.WebRootPath;
+                string wwwRootPath =_environment.WebRootPath;
                 if(file != null)
                 {
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(wwwRootPath, @"Images\Products");
                     var extension = Path.GetExtension(file.FileName);
+                    if(obj?.Product?.ImageUrl != null)
+                    {
+                        var oldImagePath = Path.Combine(wwwRootPath,obj.Product.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);    
+                        }
+                    }
                     using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), 
                         FileMode.Create))
                         {
                             file.CopyTo(fileStream);
                         };
-                    obj.Product!.ImageUrl = @"Images\Products\" + fileName + extension;
+                    obj!.Product!.ImageUrl = @"\Images\Products\" + fileName + extension;
                 }
-                _unitOfWork?.ProductRepository.Add(obj.Product!);
+                if(obj?.Product?.Id == 0)
+                {
+                    _repo?.Add(obj.Product!);
+                }
+                else
+                {
+                    _repo?.Update(obj?.Product!);
+                }
+                
                 _unitOfWork?.Save();
                 TempData["success"] = "Product Created Successfully";
                 return RedirectToAction("Index");
