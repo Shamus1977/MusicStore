@@ -58,7 +58,9 @@ namespace MusicStoreWeb.Areas.Admin.Controllers
             }
             else
             {
+                product.Product = _repo.GetFirstOrDefault(i => i.Id == id);
                 //Update product.
+                return View(product);
             }
             return View();
         }
