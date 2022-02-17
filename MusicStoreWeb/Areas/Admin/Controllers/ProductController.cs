@@ -108,35 +108,6 @@ namespace MusicStoreWeb.Areas.Admin.Controllers
             return View(obj);
         }
 
-        // ****************************   Delete section   ******************
-
-        //Get
-        public IActionResult Delete(int? id)
-        {
-            if(id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var foundProduct = _repo?.GetFirstOrDefault(p => p.Id == id);
-            if(foundProduct == null)
-            {
-                return NotFound();
-            }
-            return View(foundProduct);
-        }
-
-        //Post
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
-        {
-            var foundProduct = _repo?.GetFirstOrDefault(p => p.Id == id)!;
-            _repo?.Remove(foundProduct);
-            _unitOfWork?.Save();
-            TempData["success"] = "Product Successfully Removed";
-            return RedirectToAction("Index");
-        }
-
         #region API Calls
 
         [HttpGet]
@@ -145,6 +116,32 @@ namespace MusicStoreWeb.Areas.Admin.Controllers
             var productList = _repo?.GetAll(includeProperties:"Category");
             return Json(new {data = productList});
         }
+
+        // ****************************   Delete section   ******************
+
+        //Post
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var foundProduct = _repo?.GetFirstOrDefault(p => p.Id == id)!;
+            if(foundProduct == null)
+            {
+                return Json(new { success = false, message = "Product not found" });
+            }
+            if (foundProduct.ImageUrl != null)
+            {
+                string wwwRootPath = _environment.WebRootPath;
+                var ImagePath = Path.Combine(wwwRootPath, foundProduct.ImageUrl.TrimStart('\\'));
+                if (System.IO.File.Exists(ImagePath))
+                {
+                    System.IO.File.Delete(ImagePath);
+                }
+            }
+            _repo?.Remove(foundProduct);
+            _unitOfWork?.Save();
+            return Json(new { success = true, message = "Product Has Beed Deleted" });
+        }
+
         #endregion
     }
 }

@@ -24,7 +24,8 @@ function loadDataTable() {
                                         class="btn btn-primary">
                                         Edit
                                     </a>
-                                    <a 
+                                    <a
+                                        onClick=Delete('/Admin/Product/Delete/${data}')
                                         class="btn btn-danger">
                                         Delete
                                     </a>
@@ -35,4 +36,23 @@ function loadDataTable() {
             }
         ]
     });
+}
+
+function Delete(url) {
+    if (confirm("Are You Sure You Would Like To Delete This Product?") === true) {
+        $.ajax({
+            url: url,
+            type: "DELETE",
+            success: function (data) {
+                if (data.success) {
+                    dataTable.ajax.reload();
+                    toastr.success(data.message);
+                } else {
+                    toastr.error(data.message);
+                }
+            }
+        });
+    } else {
+        alert("Delete Has Been Canceled");
+    }
 }
