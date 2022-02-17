@@ -24,7 +24,6 @@ namespace MusicStoreWeb.Areas.Admin.Controllers
         
         public IActionResult Index()
         {
-            IEnumerable<Product>? productList = _repo?.GetAll();
             return View();
         }
 
@@ -120,5 +119,15 @@ namespace MusicStoreWeb.Areas.Admin.Controllers
             TempData["success"] = "Product Successfully Removed";
             return RedirectToAction("Index");
         }
+
+        #region API Calls
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var productList = _repo?.GetAll(includeProperties:"Category");
+            return Json(new {data = productList});
+        }
+        #endregion
     }
 }
