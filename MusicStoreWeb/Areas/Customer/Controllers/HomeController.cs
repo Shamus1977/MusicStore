@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicStoreWeb.Models;
+using MusicStoreWeb.Models.ViewModels;
 using MusicStoreWeb.Repository.IRepository;
 using System.Diagnostics;
 
@@ -23,6 +24,15 @@ namespace MusicStoreWeb.Controllers
         {
             IEnumerable<Product> productList = _productRepo.GetAll(includeProperties: "Category,CoverType");   
             return View(productList);
+        }
+
+        public IActionResult Details(int id)
+        {
+            ShoppingCart cart = new() { 
+                Product = _productRepo.GetFirstOrDefault(p => p.Id == id, "Category, CoverType"),
+                Count = 1
+            };  
+            return View(cart);
         }
 
         public IActionResult Privacy()
