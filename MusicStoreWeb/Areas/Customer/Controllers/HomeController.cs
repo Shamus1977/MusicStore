@@ -22,14 +22,14 @@ namespace MusicStoreWeb.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Product> productList = _productRepo.GetAll(includeProperties: "Category,CoverType");   
+            IEnumerable<Product> productList = _productRepo.GetAll(includeProperties: "Category,CoverType,Band");   
             return View(productList);
         }
 
         public IActionResult Details(int id)
         {
             ShoppingCart cart = new() { 
-                Product = _productRepo.GetFirstOrDefault(p => p.Id == id, "Category, CoverType"),
+                Product = _productRepo.GetFirstOrDefault(p => p.Id == id, "Category,CoverType,Band"),
                 Count = 1
             };  
             return View(cart);

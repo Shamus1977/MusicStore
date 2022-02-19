@@ -9,10 +9,11 @@
         <div class="col-3 bg-black text-center" style="display:flex; flex-direction:column;justify-content:space-between; border: solid 1px white; border-radius:5px;margin:10px">
             <img style="display:block;width:75%; margin:0 auto; padding:20px" src="@product.ImageUrl">
             <h5>@product.Title</h5>
+            <h6>@product?.Band?.Name</h6>
             <h6>Category: @product?.Category?.Name</h6>
             <h6>Format: @product?.MediaType</h6>
             <div class="mb-2">
-                <a uiactions="Details" class="btn btn-primary form-control" asp-route-id="@product?.Id" >Details</a>
+                <a asp-action="Details" class="btn btn-primary form-control" asp-route-id="@product?.Id" >Details</a>
             </div>
         </div>
     }

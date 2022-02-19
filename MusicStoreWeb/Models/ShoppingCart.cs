@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MusicStoreWeb.Models.ViewModels
+namespace MusicStoreWeb.Models
 {
     public class ShoppingCart
     {
